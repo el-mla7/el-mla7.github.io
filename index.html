@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Mohamed Mousa — AWS Cloud Engineer. I help businesses build, optimize, and automate their cloud infrastructure on AWS.">
+<title>Mohamed Mousa — Cloud Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  /* ── TOKENS ── */
+  :root {
+    --bg:       #080d1a;
+    --bg2:      #0e1525;
+    --bg3:      #131d30;
+    --card:     #111827;
+    --border:   #1e2d45;
+    --blue:     #3b82f6;
+    --blue-dim: #1d4ed8;
+    --blue-glow:#3b82f620;
+    --cyan:     #06b6d4;
+    --white:    #f0f4ff;
+    --muted:    #8892a4;
+    --dim:      #4b5a6e;
+    --font-head: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  /* ── RESET ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { color: var(--cyan); }
+  img { max-width: 100%; display: block; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2rem;
+    background: rgba(8,13,26,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--white);
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--blue); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted);
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--blue);
+    color: #fff !important;
+    padding: 0.45rem 1.1rem;
+    border-radius: 6px;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--blue-dim) !important; color: #fff !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: 0.3s; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-glow {
+    position: absolute; top: 20%; right: 10%;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative; z-index: 1;
+    max-width: 900px; margin: 0 auto; width: 100%;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--blue-glow);
+    border: 1px solid rgba(59,130,246,0.3);
+    border-radius: 100px;
+    padding: 0.35rem 0.9rem;
+    font-size: 0.8rem;
+    color: var(--blue);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.01em;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--blue);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .hero-name {
+    font-family: var(--font-head);
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+  .hero-title {
+    font-family: var(--font-head);
+    font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+    font-weight: 400;
+    color: var(--muted);
+    margin-bottom: 1.8rem;
+    letter-spacing: -0.01em;
+  }
+  .hero-title .accent { color: var(--blue); font-weight: 600; }
+  .hero-tagline {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 580px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+  .hero-tagline strong { color: var(--white); font-weight: 500; }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+  .btn-primary {
+    background: var(--blue);
+    color: #fff;
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-primary:hover { background: var(--blue-dim); color: #fff; transform: translateY(-1px); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid var(--border);
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: border-color 0.2s, transform 0.15s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-secondary:hover { border-color: var(--blue); color: var(--white); transform: translateY(-1px); }
+  .hero-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .chip {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-family: 'Space Grotesk', monospace;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .chip:hover { border-color: var(--blue); color: var(--blue); }
+
+  /* ── SECTIONS ── */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 900px; margin: 0 auto; width: 100%; }
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--blue);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .section-heading {
+    font-family: var(--font-head);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 600px;
+    margin-bottom: 3rem;
+    line-height: 1.7;
+  }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  /* ── ABOUT ── */
+  #about { background: var(--bg2); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+    line-height: 1.75;
+    font-size: 0.975rem;
+  }
+  .about-text p strong { color: var(--white); font-weight: 500; }
+  .about-stats { display: flex; flex-direction: column; gap: 1.5rem; }
+  .stat-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .stat-card:hover { border-color: var(--blue); }
+  .stat-num {
+    font-family: var(--font-head);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--blue);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-label { font-size: 0.85rem; color: var(--muted); }
+
+  /* ── SERVICES ── */
+  #services { background: var(--bg); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+  .service-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .service-card:hover { border-color: var(--blue); transform: translateY(-3px); }
+  .service-icon {
+    width: 44px; height: 44px;
+    background: var(--blue-glow);
+    border: 1px solid rgba(59,130,246,0.25);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  .service-card h3 {
+    font-family: var(--font-head);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.6rem;
+  }
+  .service-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--bg2); }
+  .skills-groups { display: flex; flex-direction: column; gap: 2.5rem; }
+  .skill-group h3 {
+    font-family: var(--font-head);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--blue);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .skill-tag {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.83rem;
+    color: var(--muted);
+    transition: all 0.2s;
+    font-family: var(--font-head);
+  }
+  .skill-tag:hover { background: var(--blue-glow); border-color: var(--blue); color: var(--white); }
+  .skill-tag.highlight { border-color: rgba(59,130,246,0.4); color: var(--white); background: var(--blue-glow); }
+
+  /* ── CREDENTIALS ── */
+  #credentials { background: var(--bg); }
+  .creds-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+  .cred-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.4rem 1.6rem;
+    transition: border-color 0.2s;
+  }
+  .cred-card:hover { border-color: var(--blue); }
+  .cred-card .cred-type {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 0.4rem;
+  }
+  .cred-card h4 {
+    font-family: var(--font-head);
+    font-size: 0.975rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+  .cred-card p { font-size: 0.82rem; color: var(--muted); }
+  .cred-card .cred-year { font-size: 0.78rem; color: var(--dim); margin-top: 0.4rem; }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--bg2); }
+  .exp-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .exp-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .exp-meta { padding-top: 0.15rem; }
+  .exp-date { font-size: 0.8rem; color: var(--dim); margin-bottom: 0.3rem; }
+  .exp-company {
+    font-family: var(--font-head);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--blue);
+  }
+  .exp-body h4 {
+    font-family: var(--font-head);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+  .exp-industry { font-size: 0.8rem; color: var(--dim); margin-bottom: 0.6rem; }
+  .exp-body p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--bg); }
+  .projects-note {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--blue);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+  }
+  .projects-note strong { color: var(--white); }
+  .projects-grid { display: flex; flex-direction: column; gap: 1.5rem; }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: border-color 0.2s;
+  }
+  .project-card:hover { border-color: var(--blue); }
+  .project-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+  .project-header h3 {
+    font-family: var(--font-head);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .project-status {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.65rem;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+  .status-live { background: rgba(34,197,94,0.1); color: #22c55e; border: 1px solid rgba(34,197,94,0.25); }
+  .status-progress { background: rgba(59,130,246,0.1); color: var(--blue); border: 1px solid rgba(59,130,246,0.25); }
+  .project-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.25rem; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .project-tag {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.75rem;
+    color: var(--dim);
+    font-family: var(--font-head);
+  }
+
+  /* ── SERVICE ICON SVG ── */
+  .service-icon svg {
+    width: 22px; height: 22px;
+    stroke: var(--blue);
+  }
+  .contact-row-icon svg {
+    width: 18px; height: 18px;
+    stroke: var(--blue);
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s cubic-bezier(.22,1,.36,1), transform 0.6s cubic-bezier(.22,1,.36,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.08s; }
+  .reveal-delay-2 { transition-delay: 0.16s; }
+  .reveal-delay-3 { transition-delay: 0.24s; }
+  .reveal-delay-4 { transition-delay: 0.32s; }
+
+  /* ── CURSOR GLOW on cards ── */
+  .glow-card {
+    position: relative;
+    overflow: hidden;
+  }
+  .glow-card::before {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(59,130,246,0.13) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    left: var(--mx, 50%);
+    top: var(--my, 50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .glow-card:hover::before { opacity: 1; }
+
+  /* ── CONTACT REDESIGN ── */
+  #contact { background: var(--bg2); }
+  .contact-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  .contact-cta-block { display: flex; flex-direction: column; justify-content: center; }
+  .contact-cta-block p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem; }
+  .contact-direct { display: flex; flex-direction: column; gap: 0.75rem; }
+  .contact-row {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 0.9rem 1.1rem;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: border-color 0.2s, transform 0.15s;
+    text-decoration: none;
+  }
+  .contact-row:hover { border-color: var(--blue); transform: translateX(3px); }
+  .contact-row-icon {
+    width: 36px; height: 36px;
+    background: var(--blue-glow);
+    border: 1px solid rgba(59,130,246,0.2);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-row-text { flex: 1; min-width: 0; }
+  .contact-row-label { font-size: 0.68rem; color: var(--dim); margin-bottom: 0.1rem; text-transform: uppercase; letter-spacing: 0.07em; }
+  .contact-row-value { font-size: 0.875rem; color: var(--white); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* Marketplace strip */
+  .marketplace-strip {
+    border-top: 1px solid var(--border);
+    padding-top: 2.5rem;
+  }
+  .marketplace-strip h3 {
+    font-family: var(--font-head);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--blue);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+  .marketplace-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  .marketplace-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem 1.25rem;
+    text-decoration: none;
+    display: flex; flex-direction: column; gap: 0.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .marketplace-card:hover { border-color: var(--blue); transform: translateY(-3px); }
+  .marketplace-card .m-name {
+    font-family: var(--font-head);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .marketplace-card .m-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+  .marketplace-card .m-arrow {
+    font-size: 0.8rem;
+    color: var(--blue);
+    margin-top: 0.25rem;
+    transition: transform 0.2s;
+  }
+  .marketplace-card:hover .m-arrow { transform: translateX(4px); }
+  @media (max-width: 768px) {
+    .contact-hero { grid-template-columns: 1fr; gap: 2rem; }
+    .marketplace-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+  }
+  .footer-inner { max-width: 900px; margin: 0 auto; }
+  footer p { font-size: 0.82rem; color: var(--dim); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { display: none; flex-direction: column; gap: 1.25rem; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg2); padding: 1.5rem 1.25rem; border-bottom: 1px solid var(--border); }
+    .nav-links.open { display: flex; }
+    .hamburger { display: flex; }
+    section { padding: 3.5rem 1.25rem; }
+    #hero { padding: 5rem 1.25rem 3rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-stats { flex-direction: row; flex-wrap: wrap; }
+    .stat-card { flex: 1; min-width: 130px; }
+    .creds-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.4rem; }
+    .exp-meta { display: flex; gap: 1rem; align-items: center; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">M.<span>Mousa</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#credentials">Credentials</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Available for freelance work</div>
+    <h1 class="hero-name">Mohamed Mousa</h1>
+    <p class="hero-title">AWS <span class="accent">Cloud Engineer</span></p>
+    <p class="hero-tagline">
+      I help businesses <strong>build, scale, and secure their cloud infrastructure on AWS</strong> — so they spend less time fighting their stack and more time growing.
+      <br><br>
+      Cairo-based. Remote-ready. CompTIA Network+ certified.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Work with me ↓</a>
+      <a href="#projects" class="btn-secondary">See my work</a>
+    </div>
+    <div class="hero-chips">
+      <span class="chip">EC2</span>
+      <span class="chip">S3</span>
+      <span class="chip">VPC</span>
+      <span class="chip">IAM</span>
+      <span class="chip">Lambda</span>
+      <span class="chip">RDS</span>
+      <span class="chip">CloudWatch</span>
+      <span class="chip">Python</span>
+      <span class="chip">CompTIA Network+</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label reveal">About</div>
+    <h2 class="section-heading reveal reveal-delay-1">The cloud has a problem.<br>I fix it.</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          Most businesses don't have an AWS problem — they have an <strong>architecture problem</strong>. Misconfigured IAM roles, bloated EC2 instances, no monitoring, no plan. That's where I come in.
+        </p>
+        <p>
+          I'm trained in AWS Cloud Foundations and AWS Academy Architecting through the DEPI program, backed by a CompTIA Network+ certification and Cisco cybersecurity training. I understand the network layer that most cloud work sits on top of — and that grounding shows in how I design infrastructure.
+        </p>
+        <p>
+          Before cloud, I spent 2+ years working inside large enterprise environments — telecoms, financial services — where I learned how systems actually operate under pressure: data accuracy, compliance workflows, cross-team escalation. That's real-world context that doesn't come from a lab.
+        </p>
+        <p>
+          I'm currently pursuing my BSc in Computer Science (4th year, Future Academy Cairo) and actively expanding my AWS expertise. I take on freelance projects through Upwork, Fiverr, and Khamsat.
+        </p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card reveal">
+          <div class="stat-num">2+</div>
+          <div class="stat-label">Years in enterprise environments</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-1">
+          <div class="stat-num">DEPI</div>
+          <div class="stat-label">AWS Academy program — active</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-2">
+          <div class="stat-num">AWS</div>
+          <div class="stat-label">Primary cloud platform</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-3">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Freelance platforms active</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-label reveal">What I offer</div>
+    <h2 class="section-heading reveal reveal-delay-1">Services</h2>
+    <p class="section-sub">Focused cloud services for businesses that need their AWS infrastructure to actually work — reliably, securely, and at the right cost.</p>
+    <div class="services-grid">
+      <div class="service-card glow-card reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
+        <h3>Cloud Infrastructure Setup</h3>
+        <p>Design and deployment of scalable AWS environments — VPCs, EC2, S3, RDS — built for your workload and budget, not a generic template.</p>
+      </div>
+      <div class="service-card glow-card reveal reveal-delay-1">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <h3>IAM & Security Configuration</h3>
+        <p>Least-privilege IAM policies, role design, and access control frameworks that reduce your attack surface without breaking your workflow.</p>
+      </div>
+      <div class="service-card glow-card reveal reveal-delay-2">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <h3>Serverless & Lambda</h3>
+        <p>Build and deploy event-driven serverless functions on AWS Lambda — lower costs, no servers to manage, scales automatically.</p>
+      </div>
+      <div class="service-card glow-card reveal reveal-delay-3">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg></div>
+        <h3>Network & VPC Design</h3>
+        <p>Subnet architecture, security groups, NACLs, and routing — a network design built for segmentation, compliance, and performance.</p>
+      </div>
+      <div class="service-card glow-card reveal reveal-delay-4">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <h3>Cloud-Backed App Development</h3>
+        <p>Cross-platform applications (Flutter/Python) with robust AWS cloud backends — APIs, storage, authentication, all connected.</p>
+      </div>
+      <div class="service-card glow-card reveal reveal-delay-1">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        <h3>Monitoring & CloudWatch</h3>
+        <p>Set up CloudWatch dashboards, alarms, and log groups so you always know what your infrastructure is doing — and get alerted when it isn't.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label reveal">Capabilities</div>
+    <h2 class="section-heading reveal reveal-delay-1">Skills</h2>
+    <div class="skills-groups">
+      <div class="skill-group">
+        <h3>Cloud & AWS</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">EC2</span>
+          <span class="skill-tag">S3</span>
+          <span class="skill-tag">VPC</span>
+          <span class="skill-tag">IAM</span>
+          <span class="skill-tag">Lambda</span>
+          <span class="skill-tag">RDS</span>
+          <span class="skill-tag">CloudWatch</span>
+          <span class="skill-tag">Cloud Foundations</span>
+          <span class="skill-tag">AWS Academy Architecting</span>
+          <span class="skill-tag">IaaS / PaaS / SaaS</span>
+          <span class="skill-tag">Cloud-native patterns</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Networking & Security</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">CompTIA Network+</span>
+          <span class="skill-tag">TCP/IP</span>
+          <span class="skill-tag">DNS</span>
+          <span class="skill-tag">HTTP/S</span>
+          <span class="skill-tag">VPN</span>
+          <span class="skill-tag">Firewalls</span>
+          <span class="skill-tag">Security Groups</span>
+          <span class="skill-tag">NACLs</span>
+          <span class="skill-tag">Cisco Cybersecurity</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Languages & Development</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">C / C++</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Dart</span>
+          <span class="skill-tag">HTML / CSS</span>
+          <span class="skill-tag">Flutter</span>
+          <span class="skill-tag">REST APIs</span>
+          <span class="skill-tag">Git / GitHub</span>
+          <span class="skill-tag">Linux CLI</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Professional Skills</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Clear Communication (B2 English)</span>
+          <span class="skill-tag">Cross-functional Teamwork</span>
+          <span class="skill-tag">Problem-Solving Under Pressure</span>
+          <span class="skill-tag">Data Accuracy & Compliance</span>
+          <span class="skill-tag">Adaptability</span>
+          <span class="skill-tag">Fast Self-Learner</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CREDENTIALS -->
+<section id="credentials">
+  <div class="container">
+    <div class="section-label reveal">Education & Certifications</div>
+    <h2 class="section-heading reveal reveal-delay-1">Credentials</h2>
+    <p class="section-sub">Formal education backed by industry certifications — every credential here is tied to something I've actually worked through, not just passed.</p>
+    <div class="creds-grid">
+      <div class="cred-card reveal">
+        <div class="cred-type">Degree</div>
+        <h4>BSc Computer Science</h4>
+        <p>Future Academy, Cairo — 4th Year / Senior</p>
+        <p class="cred-year">Sep 2023 – Expected Jun 2027</p>
+      </div>
+      <div class="cred-card reveal reveal-delay-1">
+        <div class="cred-type">Program</div>
+        <h4>DEPI – AWS Track</h4>
+        <p>AWS Cloud Foundations · AWS Academy Architecting</p>
+        <p class="cred-year">2025 – Present</p>
+      </div>
+      <div class="cred-card reveal reveal-delay-2">
+        <div class="cred-type">Certification</div>
+        <h4>CompTIA Network+</h4>
+        <p>Networking fundamentals, protocols, and infrastructure</p>
+      </div>
+      <div class="cred-card reveal reveal-delay-3">
+        <div class="cred-type">Certification</div>
+        <h4>AWS Cloud Foundations</h4>
+        <p>AWS Academy — core cloud concepts and services</p>
+      </div>
+      <div class="cred-card reveal reveal-delay-1">
+        <div class="cred-type">Certification</div>
+        <h4>AWS Academy Architecting</h4>
+        <p>Designing resilient, scalable AWS architectures</p>
+      </div>
+      <div class="cred-card reveal reveal-delay-2">
+        <div class="cred-type">Certification</div>
+        <h4>CS50 Python</h4>
+        <p>Harvard / edX — applied Python programming</p>
+      </div>
+      <div class="cred-card reveal reveal-delay-3">
+        <div class="cred-type">Cisco</div>
+        <h4>Cisco Networking Academy</h4>
+        <p>Introduction to Cybersecurity · Introduction to AI</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label reveal">Background</div>
+    <h2 class="section-heading reveal reveal-delay-1">Professional Experience</h2>
+    <p class="section-sub">Before cloud, two years inside large enterprise environments — telecoms and financial services. The skills didn't change, just the stack.</p>
+    <div class="exp-list">
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <div class="exp-date">Jul 2026 – Present</div>
+          <div class="exp-company">Vinted</div>
+        </div>
+        <div class="exp-body">
+          <h4>Support Specialist — Shipping & Delivery</h4>
+          <div class="exp-industry">E-commerce / Logistics</div>
+          <p>Resolving shipping and delivery tickets for a high-volume European marketplace, developing structured problem-solving and ticket-system workflows alongside ongoing cloud studies.</p>
+        </div>
+      </div>
+      <div class="exp-item reveal reveal-delay-1">
+        <div class="exp-meta">
+          <div class="exp-date">~1 Year</div>
+          <div class="exp-company">NewRez</div>
+        </div>
+        <div class="exp-body">
+          <h4>Escrow Analyst</h4>
+          <div class="exp-industry">Financial Services & Mortgage</div>
+          <p>Financial data reconciliation, compliance workflows, and cross-functional collaboration inside a regulated enterprise environment — skills directly applicable to cloud monitoring and incident response.</p>
+        </div>
+      </div>
+      <div class="exp-item reveal reveal-delay-2">
+        <div class="exp-meta">
+          <div class="exp-date">1 Year</div>
+          <div class="exp-company">AT&T</div>
+        </div>
+        <div class="exp-body">
+          <h4>Account & Billing Specialist</h4>
+          <div class="exp-industry">Telecommunications</div>
+          <p>Enterprise CRM platforms, SLA-driven troubleshooting, and cross-team escalation workflows inside one of the world's largest telecoms companies.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label reveal">Portfolio</div>
+    <h2 class="section-heading reveal reveal-delay-1">Projects</h2>
+    <div class="projects-note">
+      <strong>Note:</strong> Full project documentation, architecture diagrams, and GitHub links are being added as they're completed through the DEPI AWS program. Check back soon — or reach out and I'll walk you through what I've built.
+    </div>
+    <div class="projects-grid">
+      <div class="project-card glow-card reveal">
+        <div class="project-header">
+          <h3>AWS Multi-Tier Infrastructure</h3>
+          <span class="project-status status-progress">In Progress</span>
+        </div>
+        <p class="project-desc">
+          Designing and deploying a scalable, multi-tier AWS architecture: custom VPC, public/private subnet separation, EC2 auto-scaling group, S3 storage, IAM roles with least-privilege policies, and CloudWatch monitoring. Built as part of the DEPI AWS Academy Architecting program.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">EC2</span>
+          <span class="project-tag">S3</span>
+          <span class="project-tag">VPC</span>
+          <span class="project-tag">IAM</span>
+          <span class="project-tag">CloudWatch</span>
+          <span class="project-tag">AWS Academy</span>
+        </div>
+      </div>
+      <div class="project-card glow-card reveal reveal-delay-1">
+        <div class="project-header">
+          <h3>Serverless Python Backend</h3>
+          <span class="project-status status-progress">In Progress</span>
+        </div>
+        <p class="project-desc">
+          A cloud-native Python backend deployed on AWS Lambda with API Gateway as the entry point, connected to an RDS database. Designed for event-driven workloads with no server management overhead.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">Lambda</span>
+          <span class="project-tag">API Gateway</span>
+          <span class="project-tag">RDS</span>
+          <span class="project-tag">Python</span>
+          <span class="project-tag">Serverless</span>
+        </div>
+      </div>
+      <div class="project-card glow-card reveal reveal-delay-2">
+        <div class="project-header">
+          <h3>VPC Network Security Lab</h3>
+          <span class="project-status status-progress">In Progress</span>
+        </div>
+        <p class="project-desc">
+          Hands-on VPC architecture focused on security: custom subnets, security group rules, NACLs, and IAM access controls simulating an enterprise-grade environment. Based on CompTIA Network+ and Cisco cybersecurity foundations.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">VPC</span>
+          <span class="project-tag">Security Groups</span>
+          <span class="project-tag">NACLs</span>
+          <span class="project-tag">IAM</span>
+          <span class="project-tag">Network+</span>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:2rem;">
+      <a href="https://github.com/el-mla7" target="_blank" rel="noopener" class="btn-secondary">View GitHub →</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label reveal">Get in touch</div>
+    <h2 class="section-heading reveal reveal-delay-1">Let's build something.</h2>
+
+    <div class="contact-hero">
+      <div class="contact-cta-block reveal reveal-delay-2">
+        <p>Have a cloud project that needs setting up, securing, or scaling? I'm available for freelance work and open to discussing what you need — no pitch, just a conversation.</p>
+        <a href="mailto:mohammed.mousa.dev@gmail.com" class="btn-primary" style="align-self:flex-start;">Send me an email</a>
+      </div>
+      <div class="contact-direct reveal reveal-delay-3">
+        <a href="https://www.linkedin.com/in/mohammed-mousaa-97b03931b" target="_blank" rel="noopener" class="contact-row glow-card">
+          <div class="contact-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+          <div class="contact-row-text">
+            <div class="contact-row-label">LinkedIn</div>
+            <div class="contact-row-value">linkedin.com/in/mohammed-mousaa</div>
+          </div>
+        </a>
+        <a href="https://github.com/el-mla7" target="_blank" rel="noopener" class="contact-row glow-card">
+          <div class="contact-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
+          <div class="contact-row-text">
+            <div class="contact-row-label">GitHub</div>
+            <div class="contact-row-value">github.com/el-mla7</div>
+          </div>
+        </a>
+        <a href="tel:01113544351" class="contact-row glow-card">
+          <div class="contact-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div class="contact-row-text">
+            <div class="contact-row-label">Phone</div>
+            <div class="contact-row-value">+20 111 354 4351</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="marketplace-strip reveal reveal-delay-4">
+      <h3>Find me on freelance platforms</h3>
+      <div class="marketplace-grid">
+        <a href="https://www.upwork.com/freelancers/~01cb7f89a450f7488c" target="_blank" rel="noopener" class="marketplace-card glow-card">
+          <span class="m-name">Upwork</span>
+          <span class="m-desc">Cloud infrastructure & AWS projects</span>
+          <span class="m-arrow">View profile →</span>
+        </a>
+        <a href="https://www.fiverr.com/el_mala7" target="_blank" rel="noopener" class="marketplace-card glow-card">
+          <span class="m-name">Fiverr</span>
+          <span class="m-desc">Quick-turnaround cloud services</span>
+          <span class="m-arrow">View gigs →</span>
+        </a>
+        <a href="https://khamsat.com/user/momala7" target="_blank" rel="noopener" class="marketplace-card glow-card">
+          <span class="m-name">خمسات</span>
+          <span class="m-desc">Arabic-speaking clients welcome</span>
+          <span class="m-arrow">View profile →</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <p>Mohamed Mousa — AWS Cloud Engineer · Cairo, Egypt · mohammed.mousa.dev@gmail.com</p>
+  </div>
+</footer>
+
+<script>
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navAnchors = document.querySelectorAll('.nav-links a');
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navAnchors.forEach(a => {
+          a.style.color = a.getAttribute('href') === '#' + entry.target.id ? 'var(--white)' : '';
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => navObserver.observe(s));
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // Cursor-following glow on .glow-card elements
+  document.querySelectorAll('.glow-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mx', x + 'px');
+      card.style.setProperty('--my', y + 'px');
+    });
+  });
+</script>
+
+</body>
+</html>
